@@ -1,0 +1,18 @@
+{% extends 'diary/base.html' %}
+
+{% block content %}
+<div class="diary-detail">
+  <article>
+    <h2>{{ diary.created_at | date:"D, d M, Y"}} by {{ diary.author.username }}</h2>
+    <p>{% for tag in diary.get_tags %}<span class="tag">#{{tag.name}} </span>{% endfor %}</p>
+    {% for para in diary.body_paragraphs %}
+      <p>{{ para }}</p>
+    {% endfor %}
+    <p>{% for tag in diary.get_tags %}#{{tag.name}} {% endfor %}</p>
+  </article>
+  <a href="{% url 'diary-update' diary.pk  %}" class="btn btn-primary">Update</a>
+  <a href="{% url 'diary-delete' diary.pk  %}" class="btn btn-danger">Remove</a>
+</div>
+
+
+{% endblock %}

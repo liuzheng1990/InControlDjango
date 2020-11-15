@@ -1,0 +1,13 @@
+{% extends "diary/base.html" %}
+
+{% block content %}
+{% for diary in diary_list %}
+<div class="diary-list-item">
+  <h2>
+    <a href="{% url 'diary-detail' diary.pk  %}">{{ diary.created_at | date:"D, d M, Y"}} by {{ diary.author.username }}</a>
+  </h2>
+  <p>{% for tag in diary.get_tags %}<span class="tag">#{{tag.name}} </span>{% endfor %}</p>
+  <p>{{ diary.summary }}</p>
+</div>
+{% endfor %}
+{% endblock %}

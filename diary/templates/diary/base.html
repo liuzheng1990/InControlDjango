@@ -1,0 +1,45 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>InControl</title>
+    <link rel="stylesheet" href="{% static 'diary/style.css' %}">
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-item navbar-brand">
+        <a href="{% url 'index' %}">InControl</a>
+      </div>
+      <ul>
+        <li class="navbar-item"><a href="{% url 'index' %}">Home</a></li>
+        <li class="navbar-item"><a href="{% url 'diary-create' %}">New Diary</a></li>
+      </ul>
+      <div class="navbar-searchbox">
+        <form>
+          <input type="text" placeholder="Search">
+          <button type="submit">Search</button>
+        </form>
+      </div>
+      
+    </nav>
+      
+    <main role="main" class="app">
+      {% if messages %}
+        {% for msg in messages %}
+          <div class="alert alert-{{ msg.tags }}">
+             {{ msg }}
+          </div>
+        {% endfor %}
+      {% endif %}
+      {% block content %}
+      {% endblock %}
+    </main>
+
+    
+  </body>
+</html>
